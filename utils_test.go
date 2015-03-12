@@ -1,25 +1,10 @@
-package panitizer
+package panitizer_test
 
-import "testing"
+import (
+	"testing"
 
-func TestMaskCreditCardNumber(t *testing.T) {
-	creditCardTests := []struct {
-		in       string
-		expected string
-	}{
-		{"4242 4242 4242 4242", "**** **** **** 4242"},
-		{"4242-4242-4242-4242", "****-****-****-4242"},
-		{"4242424242424242", "************4242"},
-		{"foo", "foo"},
-		{"morethanfour", "morethanfour"},
-		{"four", "four"},
-	}
-	for _, tt := range creditCardTests {
-		if actual := MaskCreditCardNumber(tt.in); tt.expected != actual {
-			t.Errorf("Expected '%v' given '%v' but got '%v'", tt.expected, tt.in, actual)
-		}
-	}
-}
+	"github.com/NickPresta/panitizer"
+)
 
 func TestLuhnCheck(t *testing.T) {
 	creditCardTests := []struct {
@@ -49,8 +34,8 @@ func TestLuhnCheck(t *testing.T) {
 		{"foo", false},
 	}
 	for _, tt := range creditCardTests {
-		if actual := PassesLuhnCheck(tt.in); tt.expected != actual {
-			t.Errorf("Expected '%v' given '%v' but got '%v'", tt.expected, tt.in, actual)
+		if actual := panitizer.PassesLuhnCheck(tt.in); tt.expected != actual {
+			t.Errorf("Expected %v given %q but got %v", tt.expected, tt.in, actual)
 		}
 	}
 }

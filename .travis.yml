@@ -1,0 +1,24 @@
+sudo: false
+
+language: go
+
+go:
+    - 1.4
+    - tip
+
+notifications:
+    email: false
+
+before_install:
+    - export PATH=$PATH:$HOME/gopath/bin
+    - go get golang.org/x/tools/cmd/cover
+    - go get github.com/GeertJohan/fgt
+    - go get github.com/alecthomas/gometalinter
+    - gometalinter --install
+
+install:
+    - go get github.com/NickPresta/panitizer
+
+script:
+    - fgt gometalinter github.com/NickPresta/panitizer
+    - go test -v -tags testing -covermode=set -coverprofile=profile.cov github.com/NickPresta/panitizer

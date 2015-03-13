@@ -1,5 +1,7 @@
 # panitizer (PAN sanitizer)
 
+[![Build Status](https://travis-ci.org/NickPresta/panitizer.svg?branch=master)](https://travis-ci.org/NickPresta/panitizer)
+
 Go library (and command line tool) for scrubbing strings of PAN (Personal Account Number) data.
 
 ## Installation

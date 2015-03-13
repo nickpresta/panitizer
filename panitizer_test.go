@@ -43,7 +43,7 @@ func TestContainsPAN(t *testing.T) {
 	}
 	for _, tt := range creditCardTests {
 		if actual := panitizer.ContainsPAN(tt.in); tt.expected != actual {
-			t.Errorf("Expected %q given %q but got %q", tt.expected, tt.in, actual)
+			t.Errorf("Expected %v given %q but got %v", tt.expected, tt.in, actual)
 		}
 	}
 }
